@@ -28,6 +28,7 @@ func TestSumAll(t *testing.T) {
 		t.Errorf("got %v want %v", got, want)
 	}
 }
+
 func TestSumAllTails(t *testing.T) {
 
 	t.Run("make the sums of some slices", func(t *testing.T) {
