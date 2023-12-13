@@ -28,7 +28,7 @@ type Triangle struct {
 }
 
 func (t Triangle) Area() float64 {
-	return (t.Height * t.Base) / 0.5
+	return (t.Base * t.Height) * 0.5
 }
 
 func Perimeter(rectangle Rectangle) float64 {
