@@ -3,8 +3,8 @@ package main
 type Dictionary map[string]string
 
 const (
-	ErrorNotFound       = DictionaryErr("could not find the word you were looking for")
-	ErrorWordExists     = DictionaryErr("cannot add word because it already exists")
+	ErrNotFound         = DictionaryErr("could not find the word you were looking for")
+	ErrWordExists       = DictionaryErr("cannot add word because it already exists")
 	ErrWordDoesNotExist = DictionaryErr("cannot update word because it does not exists")
 )
 
@@ -19,7 +19,7 @@ func (d Dictionary) Search(key string) (string, error) {
 	definition, ok := d[key]
 
 	if !ok {
-		return "", ErrorNotFound
+		return "", ErrNotFound
 	}
 
 	return definition, nil
@@ -30,10 +30,10 @@ func (d Dictionary) Add(word, definition string) error {
 	_, err := d.Search(word)
 
 	switch err {
-	case ErrorNotFound:
+	case ErrNotFound:
 		d[word] = definition
 	case nil:
-		return ErrorWordExists
+		return ErrWordExists
 	default:
 		return err
 	}
@@ -45,7 +45,7 @@ func (d Dictionary) Update(word, definition string) error {
 	_, err := d.Search(word)
 
 	switch err {
-	case ErrorNotFound:
+	case ErrNotFound:
 		return ErrWordDoesNotExist
 	case nil:
 		d[word] = definition

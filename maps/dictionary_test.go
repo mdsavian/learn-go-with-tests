@@ -19,7 +19,7 @@ func TestSearch(t *testing.T) {
 			t.Fatal("expected to get an error.")
 		}
 
-		assertError(t, err, ErrorNotFound)
+		assertError(t, err, ErrNotFound)
 	})
 }
 
@@ -41,7 +41,7 @@ func TestAdd(t *testing.T) {
 		dictionary := Dictionary{word: definition}
 		err := dictionary.Add(word, "new test")
 
-		assertError(t, err, ErrorWordExists)
+		assertError(t, err, ErrWordExists)
 		assertDefinition(t, dictionary, word, definition)
 	})
 }
