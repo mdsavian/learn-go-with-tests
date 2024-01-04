@@ -31,10 +31,6 @@ func (s *SpyTime) Sleep(duration time.Duration) {
 	s.durationSlept = duration
 }
 
-func (c *ConfigurableSleeper) Sleep() {
-	c.sleep(c.duration)
-}
-
 func TestCountdown(t *testing.T) {
 
 	t.Run("prints 3 to Go!", func(t *testing.T) {
