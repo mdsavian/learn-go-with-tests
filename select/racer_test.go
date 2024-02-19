@@ -9,8 +9,14 @@ import (
 
 func TestRacer(t *testing.T) {
 
-	slowURL := makeDelayedServer(20 * time.Millisecond).URL
-	fastURL := makeDelayedServer(0 * time.Millisecond).URL
+	slowServer := makeDelayedServer(20 * time.Millisecond)
+	fastServer := makeDelayedServer(0 * time.Millisecond)
+
+	defer slowServer.Close()
+	defer fastServer.Close()
+
+	slowURL := slowServer.URL
+	fastURL := fastServer.URL
 
 	want := fastURL
 	got := Racer(slowURL, fastURL)
