@@ -5,10 +5,14 @@ import (
 	"testing"
 )
 
+func NewCounter() *Counter {
+	return &Counter{}
+}
+
 func TestCounter(t *testing.T) {
 	t.Run("incrementing counter three times leaves it at 3", func(t *testing.T) {
 
-		counter := Counter{}
+		counter := NewCounter()
 		wantedCount := 1000
 		var wg sync.WaitGroup
 		wg.Add(wantedCount)
@@ -25,7 +29,7 @@ func TestCounter(t *testing.T) {
 	})
 }
 
-func assertCount(t testing.TB, got Counter, want int) {
+func assertCount(t testing.TB, got *Counter, want int) {
 	t.Helper()
 
 	if got.Value() != want {
